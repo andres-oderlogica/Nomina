@@ -1,0 +1,215 @@
+
+/ *
+ * Tabla
+ * /
+table.dataTable {
+	margin: 0 auto;
+	claro: ambos;
+	width: 100%;
+}
+
+table.dataTable thead th {
+	padding: 18px 3px 3px 10px;
+	border-bottom: 1px solid negro;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+table.dataTable tfoot th {
+	padding: 18px 3px 3px 10px;
+	border-top: 1px solid negro;
+	font-weight: bold;
+}
+
+table.dataTable td {
+	padding: 10px 3px;
+}
+
+td.center table.dataTable,
+table.dataTable td.dataTables_empty {
+	text-align: center;
+}
+
+table.dataTable tr.odd {background-color: # E2E4FF; }
+table.dataTable tr.even {background-color: blanco; }
+
+table.dataTable tr.odd td.sorting_1 {background-color: # D3D6FF; }
+table.dataTable tr.odd td.sorting_2 {background-color: # DADCFF; }
+table.dataTable tr.odd td.sorting_3 {background-color: # E0E2FF; }
+table.dataTable tr.even td.sorting_1 {background-color: # EAEBFF; }
+table.dataTable tr.even td.sorting_2 {background-color: # F2F3FF; }
+table.dataTable tr.even td.sorting_3 {background-color: # F9F9FF; }
+
+
+/ *
+ * Tabla envoltorio
+ * /
+. DataTables_wrapper {
+	position: relative;
+	claro: ambos;
+	* Zoom: 1;
+}
+
+
+/ *
+ * Menú de Longitud de página
+ * /
+. DataTables_length {
+	float: left;
+}
+
+
+/ *
+ * Filtro
+ * /
+. DataTables_filter {
+	float: right;
+	text-align: right;
+}
+
+
+/ *
+ * Información Tabla
+ * /
+. DataTables_info {
+	claro: ambos;
+	float: left;
+}
+
+
+/ *
+ * La paginación
+ * /
+. DataTables_paginate {
+	float: right;
+	text-align: right;
+}
+
+/ * Dos botones de paginación - anterior / siguiente * /
+. Paginate_disabled_previous,
+. Paginate_enabled_previous,
+. Paginate_disabled_next,
+. Paginate_enabled_next {
+	altura: 19px;
+	float: left;
+	cursor: pointer;
+	Color: # 111 importante;
+}
+. Paginate_disabled_previous: hover,
+. Paginate_enabled_previous: hover,
+. Paginate_disabled_next: hover,
+. Paginate_enabled_next: hover {
+	text-decoration: ninguna importancia;
+}
+. Paginate_disabled_previous: activo,
+. Paginate_enabled_previous: activo,
+. Paginate_disabled_next: activo,
+. Paginate_enabled_next: activa {
+	esbozar: ninguno;
+}
+
+. Paginate_disabled_previous,
+. Paginate_disabled_next {
+	Color: # 666 importante;
+}
+. Paginate_disabled_previous,
+. Paginate_enabled_previous {
+	padding-left: 23px;
+}
+. Paginate_disabled_next,
+. Paginate_enabled_next {
+	padding-right: 23px;
+	margin-left: 10px;
+}
+
+. Paginate_enabled_previous {background: url ('images / back_enabled.png') no-repeat arriba a la izquierda; }
+. Paginate_enabled_previous: hover {background: url ('images / back_enabled_hover.png') no-repeat arriba a la izquierda; }
+. Paginate_disabled_previous {background: url ('images / back_disabled.png') no-repeat arriba a la izquierda; }
+
+. Paginate_enabled_next {background: url ('images / forward_enabled.png') no-repeat arriba a la derecha; }
+. Paginate_enabled_next: hover {background: url ('images / forward_enabled_hover.png') no-repeat arriba a la derecha; }
+. Paginate_disabled_next {background: url ('images / forward_disabled.png') no-repeat arriba a la derecha; }
+
+/ * Número completo de paginación * /
+. paging_full_numbers {
+	margin-top: 10px;
+	altura: 22px;
+	line-height: 22px;
+}
+. Paging_full_numbers a: active {
+	esbozar: ninguno
+}
+. Paging_full_numbers a: hover {
+	text-decoration: none;
+}
+
+. Paging_full_numbers a.paginate_button,
+. Paging_full_numbers a.paginate_active {
+	frontera: 1px solid rgba (66,118,150,1);
+	padding: 5px 2px;
+	margin: 0 3px;
+	cursor: pointer;
+	Color: # 333 importante;
+}
+
+. Paging_full_numbers a.paginate_button {
+	background-color: # ddd;
+}
+
+. Paging_full_numbers a.paginate_button: hover {
+	background-color: # ccc;
+	text-decoration: ninguna importancia;
+}
+
+. Paging_full_numbers a.paginate_active {
+	background-color: # 99B3FF;
+}
+
+
+/ *
+ * Indicador de Procesamiento
+ * /
+. DataTables_processing {
+	position: absolute;
+	superior: 50%;
+	izquierda: 50%;
+	ancho: 250px;
+	altura: 30px;
+	margin-left:-125px;
+	margin-top: 15px-;
+	padding: 14px 0 0 2px;
+	border: 1px solid # ddd;
+	text-align: center;
+	color: # 999;
+	font-size: 14px;
+	background-color: blanco;
+}
+
+
+/ *
+ * Clasificación
+ * /
+. Clasificar {background: url ('images / sort_both.png') Centro no-repeat derecho; }
+. Sorting_asc {background: url ('images / sort_asc.png') Centro no-repeat derecho; }
+. Sorting_desc {background: url ('images / sort_desc.png') Centro no-repeat derecho; }
+
+. Sorting_asc_disabled {background: url ('images / sort_asc_disabled.png') no-repeat centro-derecha; }
+. Sorting_desc_disabled {background: url ('images / sort_desc_disabled.png') no-repeat centro-derecha; }
+ 
+table.dataTable thead th: activo,
+table.dataTable thead td: activa {
+	esbozar: ninguno;
+}
+
+
+/ *
+ * Desplazamiento
+ * /
+. DataTables_scroll {
+	claro: ambos;
+}
+
+. DataTables_scrollBody {
+	* Margin-top: 1px-;
+	-Webkit-overflow-desplazamiento: toque;
+}

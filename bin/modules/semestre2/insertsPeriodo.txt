@@ -1,0 +1,2 @@
+INSERT INTO `periodo` (`id_periodo`, `cod_semestre`, `descripcion`, `fecha_inicio`, `fecha_final`) VALUES (NULL, '2', 'Tercer Corte Evaluativo', '2017-06-23', '2017-06-23'),(NULL, '2', '', '2017-06-23', '2017-06-23'),(NULL, '2', 'Cuarto Corte Evaluativo', '2017-06-23', '2017-06-23'),(NULL, '2', '', '2017-06-23', '2017-06-23');
+
