@@ -128,9 +128,9 @@ function verCargas()
         success: function (data)
         {
             $('#ver_cargas').html(data);
-           
+
             $('#myTable').DataTable({
-                sPaginationType: "bootstrap", 
+                sPaginationType: "bootstrap",
                 //aLengthMenu: [100],
                 language: {sProcessing: "Procesando...",
                     sLengthMenu: "Mostrar _MENU_ registros",
@@ -192,13 +192,13 @@ bootbox.confirm({
                 }
                 else
                 {
-                    //bootbox.alert("Se elimino con exito");                        
-                                
+                    //bootbox.alert("Se elimino con exito");
+
                 }
 
         },
          complete: function () {
-               verCargas()  
+               verCargas()
             }
         });
 }}
@@ -210,10 +210,10 @@ bootbox.confirm({
 $(function ()
 {
 
-$('#form_estudiante').submit(function (e)
+$('#form_trabajador').submit(function (e)
     {
-        e.preventDefault();        
-        var data = new FormData($("#form_estudiante")[0]);
+        e.preventDefault();
+        var data = new FormData($("#form_trabajador")[0]);
         $.ajax({
             url: $(this).attr('action'),
             type: 'POST',
@@ -227,15 +227,15 @@ $('#form_estudiante').submit(function (e)
                 {
                     bootbox.alert('Se presento un error al registrar el dato');
                 }
-                    bootbox.alert("Se Guardo con exito", function(){ 
-                                
+                    bootbox.alert("Se Guardo con exito", function(){
+
                                 })
-                
+
             },
             complete: function () {
-               verCargas()  
-                $('#codigo').val("")  
-                $('#identificacion').val("")                     
+               verCargas()
+              /*  $('#codigo').val("")
+                $('#identificacion').val("")
                 $('#primer_nombre').val("")
                 $('#primer_apellido').val("")
                 $('#segundo_nombre').val("")
@@ -243,7 +243,7 @@ $('#form_estudiante').submit(function (e)
                 $('#direccion').val("")
                 $('#telefono').val("")
                 $('#email').val("")
-                $('#discapacidad').val("")
+                $('#discapacidad').val("")*/
             }
         });
     });
@@ -251,15 +251,15 @@ $('#form_estudiante').submit(function (e)
 
 
 function editar(id)
-{	
-	
+{
+
 	$.ajax({    url: "clases/control_crud.php",
               type: "POST",
               dataType: "json",
               data: {opcion:"2",id:id},
           })
       .done(function(data) {
-      //console.log(data) 
+      //console.log(data)
     $("#modal_id").val(data.id_estudiante);
     $("#modal_codigo").val(data.codigo);
     $("#modal_identificacion").val(data.identificacion);
@@ -273,11 +273,8 @@ function editar(id)
     $("#modal_discapacidad").val(data.discapacidad);
     $("#modal_fecha_nacimiento").val(data.fecha_nacimiento);
     $("#modal_usuario").val(data.usuario);
-	        
-    });    
 
-     
+    });
+
+
 }
-
-
-

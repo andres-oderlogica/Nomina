@@ -1,5 +1,5 @@
 <?php
-include_once 'estudiante.php';
-$disc       = new regEstudiante();
-echo $disc->listEstudiante();
+include_once 'trabajador.php';
+$disc       = new regTrabajador();
+echo $disc->listTrabajador();
 ?>

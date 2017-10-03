@@ -1,11 +1,12 @@
 <?php
 extract($_POST);
-include_once 'estudiante.php';
-$disc       = new regEstudiante();	
+include_once 'trabajador.php';
+$disc       = new regTrabajador();
 
 try
 {
-	$disc->reg_estudiante($codigo,$identificacion,$primer_apellido,$segundo_apellido,$primer_nombre,$segundo_nombre,$direccion,$telefono,$email,$discapacidad,$fecha_nacimiento, $usuario);
+	$disc->reg_estudiante($codigo,$id_tipodocumento,$documento,$primer_nombre,$segundo_nombre,$primer_apellido,
+																	$segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email, $estado);
 	//var_dump($codigo);
       echo json_encode(array('guardado' => TRUE));
 }

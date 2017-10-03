@@ -3,7 +3,7 @@ session_start();
   if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
         header("location: ../../../login.php");
     exit;
-        } 
+        }
 ?>
 <div class="wrapper">
 
@@ -15,7 +15,7 @@ session_start();
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>B</b>S</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Sistema</b>B</span>
+      <span class="logo-lg"><b>Nomina</b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -205,7 +205,7 @@ session_start();
       </form>-->
       <!-- /.search form -->
 <?php
-include '../../../core.php';
+/*include '../../../core.php';
 $db = App::$base;
  $sql = "SELECT cod_perfil, user_name from docente where id_docente = ?";
  $rs = $db->dosql($sql, array($_SESSION['user_id']));
@@ -216,13 +216,13 @@ $db = App::$base;
   $_SESSION['nom'] = $result;
  //var_dump($_SESSION['perfil']);
 if($res == 2)
-{
+{*/
 ?>
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">CONTENIDO</li>
         <!-- Optionally, you can add icons to the links -->
-        
+
          <li class="treeview">
           <a href="../index/inicio.php"><i class="fa fa-laptop"></i> <span> Inicio</span>
             <a href="#"><i class="fa fa-dashboard"></i> <span>Docentes</span>
@@ -235,7 +235,20 @@ if($res == 2)
             <li><a href="../docente/registro_docente.php"><i class="fa fa-circle-o text-blue"></i>Listado Docentes</a></li>
           </ul>
         </li>
-        <li class="treeview">          
+        <li class="treeview">
+          <a href="#"><i class="fa fa-dashboard"></i> <span>Trabajador</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../trabajador/registro_trabajador.php"><i class="fa fa-circle-o text-red"></i>Registro Trabajador</a></li>
+            <li><a href="../trabajador/listado_trabajador.php"><i class="fa fa-circle-o text-red"></i>Listado Trabajador</a></li>
+
+          </ul>
+        </li>
+
+        <li class="treeview">
           <a href="#"><i class="fa fa-dashboard"></i> <span>Administración</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -243,30 +256,19 @@ if($res == 2)
           </a>
           <ul class="treeview-menu">
             <li><a href="../estudiante/registro_estudiante.php"><i class="fa fa-circle-o text-red"></i>Estudiantes</a></li>
-            
+
             <li><a href="../grados/registro_grado.php"><i class="fa fa-circle-o text-red"></i>Grados</a></li>
             <li><a href="../materia/registro_materia.php"><i class="fa fa-circle-o text-red"></i>Materias</a></li>
             <li><a href="../gradoxmateria/registro_gradoxmateria.php"><i class="fa fa-circle-o text-red"></i>Materias x Grado</a></li>
             <li><a href="../docentexgrado/registro_docentexgrado.php"><i class="fa fa-circle-o text-red"></i>Docente x Grado</a></li>
           </ul>
         </li>
+
         <li class="active"><a href="../matricula/registro_matricula.php"><i class="fa fa-edit"></i> <span>Matriculas</span></a></li>
         <li><a href="../notas/registrar_notas.php"><i class="fa fa-book"></i> <span>Registrar Notas</span></a></li>
-        <!-- <li><a href="../../../login.php?logout"><i class="fa fa-link"></i> <span>Salir</span></a></li>-->
-       <!-- <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Administracion</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>-->
+
         </li>
-      <!--  <li class="active"><a href="../matricula/registro_matricula.php"><i class="fa fa-edit"></i> <span>Matriculas</span></a></li>
-        <li><a href="../notas/registrar_notas.php"><i class="fa fa-book"></i> <span>Registrar Notas</span></a></li>-->
+
 
          <li class="treeview">
             <a href="#"><i class="fa fa-dashboard"></i> <span>Boletines</span>
@@ -276,7 +278,7 @@ if($res == 2)
           </a>
           <ul class="treeview-menu">
             <li><a href="../boletines/seleccion_datos.php"><i class="fa fa-circle-o text-red"></i>Generar Boletines General</a></li>
-            
+
           </ul>
         </li>
 
@@ -288,21 +290,21 @@ if($res == 2)
           </a>
           <ul class="treeview-menu">
             <li><a href="../boletines/seleccion_datos_promedio.php"><i class="fa fa-circle-o text-red"></i>Generar Consolidado de Notas</a></li>
-            
+
           </ul>
         </li>
 
       </ul>
 
       <?php
-      }
+    /*  }
      if($res == 1)
-      {
+      {*/
       ?>
        <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">CONTENIDO</li>
-        <!-- Optionally, you can add icons to the links -->    
+        <!-- Optionally, you can add icons to the links -->
         <li><a href="../index/inicio.php"><i class="fa fa-laptop"></i> <span> Inicio</span></a></li>
         <li><a href="../notas/registrar_notas.php"><i class="fa fa-book"></i> <span>Registrar Notas</span></a></li>
        <!--   <li><a href="../../../login.php?logout"><i class="fa fa-link"></i> <span>Salir</span></a></li>
@@ -319,14 +321,14 @@ if($res == 2)
         </li>-->
       </ul>
       <?php
-    }
+  /*  }
      if($res == 3)
-      {
+      {*/
       ?>
        <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">CONTENIDO</li>
-        <!-- Optionally, you can add icons to the links -->    
+        <!-- Optionally, you can add icons to the links -->
         <li><a href="../index/inicio.php"><i class="fa fa-laptop"></i> <span> Inicio</span></a></li>
         <li><a href="../estudiante/bloquear_notas.php"><i class="fa fa-book"></i> <span>Activar/Desactivar Ver Notas</span></a></li>
        <!--   <li><a href="../../../login.php?logout"><i class="fa fa-link"></i> <span>Salir</span></a></li>
@@ -343,55 +345,20 @@ if($res == 2)
         </li>-->
       </ul>
       <?php
-    }
-    ?>
-
-    <?php
-   
-     if($res == 4)
-      {
-      ?>
-       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header">CONTENIDO</li>
-        <!-- Optionally, you can add icons to the links -->    
-        <li><a href="../index/inicio.php"><i class="fa fa-laptop"></i> <span> Inicio</span></a></li>
-        <li class="treeview">
-            <a href="#"><i class="fa fa-book"></i> <span>Reportes</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../boletines/seleccion_datos_promedio.php"><i class="fa fa-circle-o text-red"></i>Generar Consolidado de Notas</a></li>
-            
-          </ul>
-        </li>
-      </ul>
-      <?php
-    }
+  //  }
     ?>
 
 
-      <!-- /.sidebar-menu -->
     </section>
-    <!-- /.sidebar -->
+
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-     <!-- <h1>
-        Page Header
-        <small>Optional description</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>-->
+
     </section>
 
     <!-- Main content -->
     <section class="content">
-
