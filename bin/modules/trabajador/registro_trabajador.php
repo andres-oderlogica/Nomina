@@ -55,6 +55,14 @@ session_start();
   ?>
 
 <div class="container-fluid">
+  <div class="alert alert-success alert-dismissable fade in" id="alerta">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Registro Exitoso!</strong> Se han registrado con exito los datos del trabajador.
+  </div>
+  <div class="alert alert-danger alert-dismissable fade in" id="alerta_error">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
+  </div>
 <form id="form_trabajador" action="clases/control_trabajador.php">
              <div class="col-md-6">
                 <div class="panel panel-primary">
@@ -74,45 +82,45 @@ session_start();
 
                               <div class="col-md-6">
 
-                              <input class="form-control" id="documento" name="documento" placeholder="Documento" type="text" required><br>
+                              <input class="form-control" id="documento" name="documento" placeholder="No de documento" type="text" required><br>
                               </div>
                               <div class="col-md-12">
                                <input class="form-control" id="codigo" name="codigo" placeholder="Digita el codigo" type="text" ><br>
                              </div>
 
                                   <div class="col-md-12">
-                              <input class="form-control" required="true" id="primer_nombre" name="primer_nombre" placeholder="1er Nombre" type="text" ><br>
+                              <input class="form-control" required="true" id="primer_nombre" name="primer_nombre" placeholder="Digite Primer Nombre" type="text" ><br>
                               </div>
 
                               <div class="col-md-12">
-                              <input class="form-control" id="segundo_nombre" name="segundo_nombre" placeholder="2do Nombre" type="text" ><br>
+                              <input class="form-control" id="segundo_nombre" name="segundo_nombre" placeholder="Digite Segundo Nombre" type="text" ><br>
                               </div>
 
                               <div class="col-md-12">
-                              <input class="form-control" required="true" id="primer_apellido" name="primer_apellido" placeholder="1er Apellido" type="text" ><br>
+                              <input class="form-control" required="true" id="primer_apellido" name="primer_apellido" placeholder="Digite Primer Apellido" type="text" ><br>
                               </div>
 
                               <div class="col-md-12">
-                              <input class="form-control" id="segundo_apellido" name="segundo_apellido" placeholder="2do Apellido" type="text" ><br>
+                              <input class="form-control" id="segundo_apellido" name="segundo_apellido" placeholder="Digite Segundo Apellido" type="text" ><br>
                               </div>
 
 
-                              
 
-                           
-                        
+
+
+
                     </div>
                 </div>
             </div>
                <div class="col-md-6">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Datos de Residencia</div>
+                    <div class="panel-heading">Datos de Residencia y Contacto</div>
                     <div class="panel-body">
                       <div class="col-md-6">
-                              <input class="form-control" id="barrio" name="barrio" placeholder="Barrio" type="text" ><br>
+                              <input class="form-control" id="barrio" name="barrio" placeholder="Digite el Barrio" type="text" ><br>
                               </div>
                               <div class="col-md-6">
-                                <input class="form-control" id="direccion" name="direccion" placeholder="Direccion" type="text" ><br>
+                                <input class="form-control" id="direccion" name="direccion" placeholder="Digite la Direccion" type="text" ><br>
                                 </div>
 
                                 <div class="col-md-6">
@@ -126,21 +134,26 @@ session_start();
                                  <div class="col-md-12">
                                 <input class="form-control" id="email" name="email" placeholder="Correo" type="email" ><br>
                                 </div>
-                      
+
                     </div>
                 </div>
 
                  <div class="panel panel-primary">
                     <div class="panel-heading">Guardar datos</div>
                     <div class="panel-body">
-                      <div class="col-md-6">
-                                         
-                         <div class="col-md-12">
-                              <center>  <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button></center>
+                      <div class="col-md-9">
+                         <div class="col-md-6">
+                              <center> <button type="submit" class="btn btn-primary" id="btn_guardar"><i class="glyphicon glyphicon-floppy-disk"></i> Guardar Datos</button>
+                              </center>
                             </div>
-                      
+
+                            <div class="col-md-6">
+                                 <center> <button type="submit" class="btn btn-warning" onclick="location.href='registro_trabajador.php';" ><i class="glyphicon glyphicon-pencil"></i> Nuevo Registro</button>
+                                 </center>
+                               </div>
+
                     </div>
-                </div> 
+                </div>
             </div>
 
 </div>

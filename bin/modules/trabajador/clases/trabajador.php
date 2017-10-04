@@ -51,6 +51,8 @@ public function listTrabajador()
         telefono_fijo,
         email,
         celular,
+        id_estado,
+        case id_estado when '1' then 'ACTIVO' when '2' then 'INACTIVO' END AS estado,
       \"
               <button type=\'button\' class=\'btn btn-primary btn-sm btn_edit\' data-title=\'Edit\' data-toggle=\'modal\' data-target=\'#myModal\' >
                <span class=\'glyphicon glyphicon-pencil\'></span></button>
@@ -64,11 +66,24 @@ public function listTrabajador()
                 \"
                as editar,
                \"
-              <button type=\'button\' class=\'btn btn-danger btn-sm btn_delete\' data-title=\'Edit\'>
+              <button type=\'button\' class=\'btn btn-warning btn-sm btn_delete\' data-title=\'Edit\'>
                <span class=\'glyphicon glyphicon-trash\'></span></button>
                </div>
                 \"
-                 as borrar
+                 as inactivar,
+                 \"
+                 <button type=\'button\' class=\'btn btn-success btn-sm btn_delete\' data-title=\'Edit\'>
+                  <span class=\'glyphicon glyphicon-trash\'></span></button>
+                  </div>
+                   \"
+                    as activar,
+
+                 \"
+                <button type=\'button\' class=\'btn btn-danger btn-sm btn_delete\' data-title=\'Edit\'>
+                 <span class=\'glyphicon glyphicon-trash\'></span></button>
+                 </div>
+                  \"
+                   as borrar
             FROM
             `trabajador`
             order by
@@ -76,22 +91,33 @@ public function listTrabajador()
             ";
 
 		$rs = $con->dosql($sql, array());
+
         $tabla = '<table id="myTable" class="table table-hover table-striped table-bordered table-condensed" cellpadding="0" cellspacing="0" border="1" class="display" >
                         <thead>
                         <tr>
-                        <th id="yw9_c0">#</th>                        
+                        <th id="yw9_c0">#</th>
                         <th id="yw9_c3">Identificacion</th>
                         <th id="yw9_c4">Nombres y Apellidos</th>
                         <th id="yw9_c3">Dirección</th>
                         <th id="yw9_c6">Celular</th>
+                        <th id="yw9_c6">Estado</th>
                         <th id="yw9_c7">Editar</th>
-                        <th id="yw9_c7">ELiminar</th>
-                        
+                        <th id="yw9_c7">Inac/Act</th>
+                        <th id="yw9_c7">Eliminar</th>
+
                         </tr>
                         </thead>
                         <tbody>';
 		          while (!$rs->EOF)
                    {
+
+                     if($rs->fields['id_estado'] == 1)
+                     {
+                       $est = $rs->fields['inactivar'];
+                     }
+                     else{
+                       $est = $rs->fields['activar'];
+                     }
                    	$tabla.='<tr >
                             <td>
                                 '.utf8_encode($rs->fields['id_trabajador']).'
@@ -109,10 +135,18 @@ public function listTrabajador()
                             <td>
                                 '.utf8_encode($rs->fields['celular']).'
                             </td>
+                            <td>
+                                '.utf8_encode($rs->fields['estado']).'
+                            </td>
 
                             <td align="center" width= "30" onclick="editar('.$rs->fields['id_trabajador'].')">
                                 '.utf8_encode($rs->fields['editar']).'
                             </td>
+
+                            <td align="center" width= "30" onclick="editar_estado('.$rs->fields['id_trabajador'].','.$rs->fields['id_estado'].')">
+                                '.$est.'
+                            </td>
+
                             <td align="center" width= "30" onclick="eliminar('.$rs->fields['id_trabajador'].')">
                                 '.utf8_encode($rs->fields['borrar']).'
                             </td>
@@ -130,246 +164,32 @@ public function listTrabajador()
 }
 
 
-public function listBloquear($id)
-{
-  $con = App::$base;
-    $sql = "SELECT
-        estudiante.id_estudiante,
-        codigo,
-        identificacion,
-        primer_apellido,
-        segundo_apellido,
-        primer_nombre,
-        segundo_nombre,
-        concat(
-        ifnull(primer_apellido,' '),' ',
-        ifnull(segundo_apellido,' '),' ',
-        ifnull(primer_nombre,' '),' ',
-        ifnull(segundo_nombre,' ')) as nombre_completo,
- CONCAT(`grado`.`descripcion`, ' ', `grado`.`letra`) AS `curso`,
- `grado`.`id_grado`,
-        case when idestado_pago = 1   then 'PAGADO'
-        when idestado_pago = 2 then 'DEBE' END AS estadopago,
 
-                    \"
-              <button type=\'button\' class=\'btn btn-danger btn-sm btn_delete\' data-title=\'Edit\'>
-               <span class=\'glyphicon glyphicon-floppy-remove\'></span></button>
-               </div>
-                \" as bloquear,
-
-              \"
-              <button type=\'button\' class=\'btn btn-success btn-sm btn_delete\' data-title=\'Edit\'>
-               <span class=\'glyphicon glyphicon-floppy-saved\'></span></button>
-               </div>
-                \"
-                 as desbloquear
-            FROM estudiante, grado, estudiantexgrado
-            WHERE estudiante.id_estudiante = estudiantexgrado.id_estudiante
-            AND grado.id_grado = estudiantexgrado.id_grado
-            AND estudiantexgrado.id_grado = ?
-            and `estudiantexgrado`.`estado_grado` = 1
-                        ";
-
-    $rs = $con->dosql($sql, array($id));
-        $tabla = '<table id="myTable" class="table table-hover table-striped table-bordered table-condensed" cellpadding="0" cellspacing="0" border="1" class="display" >
-                        <thead>
-                        <tr>
-                        <th id="yw9_c0">#</th>
-                        <th id="yw9_c1">Codigo</th>
-                        <th id="yw9_c3">Identificacion</th>
-                        <th id="yw9_c4">Nombres y Apellidos</th>
-                        <th id="yw9_c6">Grado</th>
-                        <th id="yw9_c6">Estado de Pago</th>
-                        <th id="yw9_c8">Bloquear</th>
-                        <th id="yw9_c8">Desbloquear</th>
-                        </tr>
-                        </thead>
-                        <tbody>';
-              while (!$rs->EOF)
-                   {
-                    $tabla.='<tr >
-                            <td>
-                                '.utf8_encode($rs->fields['id_estudiante']).'
-                            </td>
-                            <td>
-                                '.utf8_encode($rs->fields['codigo']).'
-                            </td>
-
-                            <td>
-                                '.utf8_encode($rs->fields['identificacion']).'
-                            </td>
-                            <td>
-                                '.utf8_encode($rs->fields['nombre_completo']).'
-                            </td>
-                            <td>
-                                '.utf8_encode($rs->fields['curso']).'
-                            </td>
-
-                            <td align="center">
-                                '.utf8_encode($rs->fields['estadopago']).'
-                            </td>
-
-                            <td align="center" width= "30" onclick="eliminar('.$rs->fields['id_estudiante'].','.$rs->fields['id_grado'].')">
-                                '.utf8_encode($rs->fields['bloquear']).'
-                            </td>
-                            <td align="center" width= "30" onclick="desblock('.$rs->fields['id_estudiante'].','.$rs->fields['id_grado'].')">
-                                '.utf8_encode($rs->fields['desbloquear']).'
-                            </td>' ;
-
-            $tabla.= '</tr>';
-
-                 $rs->MoveNext();
-                   }
-
-        $tabla.="</tbody></table>";
-        return $tabla;
-
-}
-
-/*public function listBloquear()
-{
-  $con = App::$base;
-    $sql = "SELECT
-        id_estudiante,
-        codigo,
-        identificacion,
-        primer_apellido,
-        segundo_apellido,
-        primer_nombre,
-        segundo_nombre,
-        concat(
-        ifnull(primer_apellido,' '),' ',
-        ifnull(segundo_apellido,' '),' ',
-        ifnull(primer_nombre,' '),' ',
-        ifnull(segundo_nombre,' ')) as nombre_completo,
-        telefono,
-        case when idestado_pago = 1   then 'PAGADO'
-        when idestado_pago = 2 then 'DEBE' END AS estadopago,
-
-                    \"
-              <button type=\'button\' class=\'btn btn-danger btn-sm btn_delete\' data-title=\'Edit\'>
-               <span class=\'glyphicon glyphicon-floppy-remove\'></span></button>
-               </div>
-                \" as bloquear,
-
-              \"
-              <button type=\'button\' class=\'btn btn-success btn-sm btn_delete\' data-title=\'Edit\'>
-               <span class=\'glyphicon glyphicon-floppy-saved\'></span></button>
-               </div>
-                \"
-                 as desbloquear
-            FROM
-            `estudiante`
-            order by
-            primer_apellido ASC
-            ";
-
-    $rs = $con->dosql($sql, array());
-        $tabla = '<table id="myTable" class="table table-hover table-striped table-bordered table-condensed" cellpadding="0" cellspacing="0" border="1" class="display" >
-                        <thead>
-                        <tr>
-                        <th id="yw9_c0">#</th>
-                        <th id="yw9_c1">Codigo</th>
-                        <th id="yw9_c3">Identificacion</th>
-                        <th id="yw9_c4">Nombres y Apellidos</th>
-                        <th id="yw9_c6">Estado de Pago</th>
-                        <th id="yw9_c8">Bloquear</th>
-                        <th id="yw9_c8">Desbloquear</th>
-                        </tr>
-                        </thead>
-                        <tbody>';
-              while (!$rs->EOF)
-                   {
-                    $tabla.='<tr >
-                            <td>
-                                '.utf8_encode($rs->fields['id_estudiante']).'
-                            </td>
-                            <td>
-                                '.utf8_encode($rs->fields['codigo']).'
-                            </td>
-
-                            <td>
-                                '.utf8_encode($rs->fields['identificacion']).'
-                            </td>
-                            <td>
-                                '.utf8_encode($rs->fields['nombre_completo']).'
-                            </td>
-
-                            <td>
-                                '.utf8_encode($rs->fields['estadopago']).'
-                            </td>
-
-
-                            <td align="center" width= "30" onclick="eliminar('.$rs->fields['id_estudiante'].')">
-                                '.utf8_encode($rs->fields['bloquear']).'
-                            </td>
-                            <td align="center" width= "30" onclick="desblock('.$rs->fields['id_estudiante'].')">
-                                '.utf8_encode($rs->fields['desbloquear']).'
-                            </td>' ;
-
-            $tabla.= '</tr>';
-
-                 $rs->MoveNext();
-                   }
-
-        $tabla.="</tbody></table>";
-        return $tabla;
-
-}*/
-
-/*public function eliminar($id)
-{
-    $con = App::$base;
-    $sql = "DELETE
-    FROM `colegio`.`estudiante`
-    WHERE `id_estudiante`= ?";
-    $rs = $con->dosql($sql, array($id));
-}*/
 
 public function eliminar($id)
 {
-    $reg              = new Estudiante('estudiante');
-    $reg->load("id_estudiante = {$id}");
+    $reg              = new Trabajador('trabajador');
+    $reg->load("id_trabajador = {$id}");
     $reg->Delete();
 }
 
-/*public function editar($id,$codigo,$identificacion,$primer_apellido,$segundo_apellido,$primer_nombre,
-                               $segundo_nombre,$direccion,$telefono,$email,$discapacidad)
-  {
-
-        $db = App::$base;
-        $sql = "UPDATE `colegio`.`estudiante`
-                SET codigo = ?,
-                    identificacion = ?,
-                    primer_apellido = ?,
-                    segundo_apellido = ?,
-                    primer_nombre = ?,
-                    segundo_nombre = ?,
-                    direccion = ?,
-                    telefono = ?,
-                    email  = ?,
-                    discapacidad = ?
-                WHERE `id_estudiante`= ?";
-    $rs = $db->dosql($sql, array($codigo,$identificacion,$primer_apellido,$segundo_apellido,$primer_nombre,$segundo_nombre,$direccion,$telefono,$email,$discapacidad,$id));
-       //var_dump($rs);
-  }*/
-
-  public function editar($id,$codigo,$identificacion,$primer_apellido,$segundo_apellido,$primer_nombre,$segundo_nombre,$direccion,$telefono,$email,$discapacidad, $fecha_nacimiento, $usuario)
+public function editar($id,$codigo,$id_tipodocumento,$documento,$primer_nombre,$segundo_nombre,$primer_apellido,
+                                $segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email)
     {
-        $reg              = new Estudiante('estudiante');
-        $reg->load("id_estudiante = {$id}");
+        $reg              = new Trabajador('trabajador');
+        $reg->load("id_trabajador = {$id}");
         $reg->codigo              =$codigo;
-        $reg->identificacion      = $identificacion;
-        $reg->primer_apellido = $primer_apellido;
-        $reg->segundo_apellido = $segundo_apellido;
+        $reg->id_tipodocumento    = $id_tipodocumento;
+        $reg->documento      = $documento;
         $reg->primer_nombre = $primer_nombre;
         $reg->segundo_nombre = $segundo_nombre;
+        $reg->primer_apellido = $primer_apellido;
+        $reg->segundo_apellido = $segundo_apellido;
         $reg->direccion = $direccion;
-        $reg->telefono = $telefono;
+        $reg->barrio = $barrio;
+        $reg->telefono_fijo = $telefono_fijo;
+        $reg->celular      =$celular;
         $reg->email = $email;
-        $reg->discapacidad = $discapacidad;
-        $reg->fecha_nacimiento = $fecha_nacimiento;
-        $reg->usuario = $usuario;
         $reg->Save();
         //return $reg->id_estudiante;
     }

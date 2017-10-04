@@ -36,7 +36,7 @@ switch ($opcion) {
 		case '3':
 
 			$disc->editar($codigo,$id_tipodocumento,$documento,$primer_nombre,$segundo_nombre,$primer_apellido,
-			                                $segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email, $estado);
+			              $segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email, $estado);
 			break;
 
 		case '4':

@@ -225,11 +225,13 @@ $('#form_trabajador').submit(function (e)
             success: function (data) {
                 if (!data.guardado)
                 {
-                    bootbox.alert('Se presento un error al registrar el dato');
+                  //  bootbox.alert('Se presento un error al registrar el dato');
+                  $('#alerta_error').show();
                 }
-                    bootbox.alert("Se Guardo con exito", function(){
-
-                                })
+                  //  bootbox.alert("Se Guardo con exito", function(){
+                  $("#alerta").show()
+                  $( "#btn_guardar" ).prop( "disabled", true );
+                                              //    })
 
             },
             complete: function () {
@@ -278,3 +280,7 @@ function editar(id)
 
 
 }
+$(document).ready(function($){
+$('#alerta').hide();
+$('#alerta_error').hide();
+})
