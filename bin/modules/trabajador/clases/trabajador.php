@@ -79,12 +79,13 @@ public function listTrabajador()
         $tabla = '<table id="myTable" class="table table-hover table-striped table-bordered table-condensed" cellpadding="0" cellspacing="0" border="1" class="display" >
                         <thead>
                         <tr>
-                        <th id="yw9_c0">#</th>
-
+                        <th id="yw9_c0">#</th>                        
                         <th id="yw9_c3">Identificacion</th>
                         <th id="yw9_c4">Nombres y Apellidos</th>
+                        <th id="yw9_c3">Dirección</th>
                         <th id="yw9_c6">Celular</th>
                         <th id="yw9_c7">Editar</th>
+                        <th id="yw9_c7">ELiminar</th>
                         
                         </tr>
                         </thead>
@@ -102,12 +103,18 @@ public function listTrabajador()
                             <td>
                                 '.$rs->fields['nombre_completo'].'
                             </td>
+                             <td>
+                                '.utf8_encode($rs->fields['direccion']).'
+                            </td>
                             <td>
                                 '.utf8_encode($rs->fields['celular']).'
                             </td>
 
                             <td align="center" width= "30" onclick="editar('.$rs->fields['id_trabajador'].')">
                                 '.utf8_encode($rs->fields['editar']).'
+                            </td>
+                            <td align="center" width= "30" onclick="eliminar('.$rs->fields['id_trabajador'].')">
+                                '.utf8_encode($rs->fields['borrar']).'
                             </td>
 
                           ' ;

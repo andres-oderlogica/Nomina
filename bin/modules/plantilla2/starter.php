@@ -222,19 +222,8 @@ if($res == 2)
       <ul class="sidebar-menu">
         <li class="header">CONTENIDO</li>
         <!-- Optionally, you can add icons to the links -->
-
-         <li class="treeview">
-          <a href="../index/inicio.php"><i class="fa fa-laptop"></i> <span> Inicio</span>
-            <a href="#"><i class="fa fa-dashboard"></i> <span>Docentes</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../usuarios/usuarios.php"><i class="fa fa-circle-o text-blue"></i>Admin Docentes y/o Usuarios</a></li>
-            <li><a href="../docente/registro_docente.php"><i class="fa fa-circle-o text-blue"></i>Listado Docentes</a></li>
-          </ul>
-        </li>
+        <li><a href="../index/inicio.php"><i class="fa fa-laptop"></i> <span> Inicio</span></a></li>
+        <!-- menu trabajador-->
         <li class="treeview">
           <a href="#"><i class="fa fa-dashboard"></i> <span>Trabajador</span>
             <span class="pull-right-container">
@@ -244,9 +233,21 @@ if($res == 2)
           <ul class="treeview-menu">
             <li><a href="../trabajador/registro_trabajador.php"><i class="fa fa-circle-o text-red"></i>Registro Trabajador</a></li>
             <li><a href="../trabajador/listado_trabajador.php"><i class="fa fa-circle-o text-red"></i>Listado Trabajador</a></li>
-
           </ul>
         </li>
+         <!-- fin menu trabajador-->
+         <li class="treeview">
+             <a href="#"><i class="fa fa-dashboard"></i> <span>Usuarios</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../usuarios/usuarios.php"><i class="fa fa-circle-o text-blue"></i>Admin Docentes y/o Usuarios</a></li>
+            <li><a href="../docente/registro_docente.php"><i class="fa fa-circle-o text-blue"></i>Listado Docentes</a></li>
+          </ul>
+        </li>
+        
 
         <li class="treeview">
           <a href="#"><i class="fa fa-dashboard"></i> <span>Administración</span>
@@ -296,59 +297,7 @@ if($res == 2)
 
       </ul>
 
-      <?php
-    /*  }
-     if($res == 1)
-      {*/
-      ?>
-       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header">CONTENIDO</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li><a href="../index/inicio.php"><i class="fa fa-laptop"></i> <span> Inicio</span></a></li>
-        <li><a href="../notas/registrar_notas.php"><i class="fa fa-book"></i> <span>Registrar Notas</span></a></li>
-       <!--   <li><a href="../../../login.php?logout"><i class="fa fa-link"></i> <span>Salir</span></a></li>
-       <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Administracion</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>-->
-      </ul>
-      <?php
-  /*  }
-     if($res == 3)
-      {*/
-      ?>
-       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header">CONTENIDO</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li><a href="../index/inicio.php"><i class="fa fa-laptop"></i> <span> Inicio</span></a></li>
-        <li><a href="../estudiante/bloquear_notas.php"><i class="fa fa-book"></i> <span>Activar/Desactivar Ver Notas</span></a></li>
-       <!--   <li><a href="../../../login.php?logout"><i class="fa fa-link"></i> <span>Salir</span></a></li>
-       <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Administracion</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>-->
-      </ul>
-      <?php
-  //  }
-    ?>
-
-
+   
     </section>
 
   </aside>

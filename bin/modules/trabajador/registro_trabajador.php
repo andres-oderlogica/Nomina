@@ -56,13 +56,13 @@ session_start();
 
 <div class="container-fluid">
 <form id="form_trabajador" action="clases/control_trabajador.php">
-             <div class="col-md-4">
+             <div class="col-md-6">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Registrar Trabajador</div>
+                    <div class="panel-heading">Datos Personales</div>
                     <div class="panel-body">
 
-                             <div class="col-md-12">
-                                 <label>Tipo Documento</label>
+                             <div class="col-md-6">
+                              <!--   <label>Tipo Documento</label>-->
                                <select class="form-control" name="id_tipodocumento">
                                 <option value ="1">CEDULA DE CIUDADANIA</option>
                                 <option value ="2">TARJETA DE IDENTIDAD</option>
@@ -72,7 +72,7 @@ session_start();
                                </select><br>
                              </div>
 
-                              <div class="col-md-12">
+                              <div class="col-md-6">
 
                               <input class="form-control" id="documento" name="documento" placeholder="Documento" type="text" required><br>
                               </div>
@@ -80,24 +80,35 @@ session_start();
                                <input class="form-control" id="codigo" name="codigo" placeholder="Digita el codigo" type="text" ><br>
                              </div>
 
-                                  <div class="col-md-6">
+                                  <div class="col-md-12">
                               <input class="form-control" required="true" id="primer_nombre" name="primer_nombre" placeholder="1er Nombre" type="text" ><br>
                               </div>
 
-                              <div class="col-md-6">
+                              <div class="col-md-12">
                               <input class="form-control" id="segundo_nombre" name="segundo_nombre" placeholder="2do Nombre" type="text" ><br>
                               </div>
 
-                              <div class="col-md-6">
+                              <div class="col-md-12">
                               <input class="form-control" required="true" id="primer_apellido" name="primer_apellido" placeholder="1er Apellido" type="text" ><br>
                               </div>
 
-                              <div class="col-md-6">
+                              <div class="col-md-12">
                               <input class="form-control" id="segundo_apellido" name="segundo_apellido" placeholder="2do Apellido" type="text" ><br>
                               </div>
 
 
-                              <div class="col-md-6">
+                              
+
+                           
+                        
+                    </div>
+                </div>
+            </div>
+               <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Datos de Residencia</div>
+                    <div class="panel-body">
+                      <div class="col-md-6">
                               <input class="form-control" id="barrio" name="barrio" placeholder="Barrio" type="text" ><br>
                               </div>
                               <div class="col-md-6">
@@ -115,28 +126,25 @@ session_start();
                                  <div class="col-md-12">
                                 <input class="form-control" id="email" name="email" placeholder="Correo" type="email" ><br>
                                 </div>
+                      
+                    </div>
+                </div>
 
-                            <div class="col-md-12">
+                 <div class="panel panel-primary">
+                    <div class="panel-heading">Guardar datos</div>
+                    <div class="panel-body">
+                      <div class="col-md-6">
+                                         
+                         <div class="col-md-12">
                               <center>  <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button></center>
                             </div>
-                        </form>
+                      
                     </div>
-                </div>
-            </div>
-               <div class="col-md-8">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Listado Trabajadores</div>
-                    <div class="panel-body">
-
-                              <span id="loader"></span>
-
-                        <div id="ver_cargas"></div>
-
-                    </div>
-                </div>
+                </div> 
             </div>
 
 </div>
+</form>
 <?php
   include 'modal_editar_trabajador.php';
 ?>
