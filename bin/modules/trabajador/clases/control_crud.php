@@ -34,14 +34,19 @@ switch ($opcion) {
 		echo json_encode($res);
 		break;
 		case '3':
-
-			$disc->editar($codigo,$id_tipodocumento,$documento,$primer_nombre,$segundo_nombre,$primer_apellido,
-			              $segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email, $estado);
+			$disc->editar($id,$codigo,$documento,$primer_nombre,$segundo_nombre,$primer_apellido,$segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email);
 			break;
 
 		case '4':
 			try {
-					$disc->editarEstadoPago($id, $estado);
+					if($estado == 1){
+						$disc->editarEstado($id, 2);
+					}
+					if($estado == 2){
+						$disc->editarEstado($id, 1);
+					}
+
+					
 					echo json_encode(array('editado' => TRUE));
 
 				} catch (Exception $ex) {

@@ -206,6 +206,49 @@ bootbox.confirm({
     })
 }
 
+function editar_estado(id, estado)
+{
+bootbox.confirm({
+    message: "Desea descativar el trabajador ?",
+    buttons: {
+        confirm: {
+            label: 'Si',
+            className: 'btn-success'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-danger'
+        }
+    },
+    callback: function (result) {
+    if(result){
+    $.ajax({
+        url: 'clases/control_crud.php',
+        type: "POST",
+        dataType:'json',
+        data:{opcion:4, id:id, estado:estado},
+        success: function (data)
+        {
+             if (!data.editado)
+                {
+                    bootbox.alert('Error al eliminar el dato');
+                }
+                else
+                {
+                    //bootbox.alert("Se elimino con exito");                        
+                                
+                }
+
+        },
+         complete: function () {
+               verCargas()  
+            }
+        });
+      }}
+
+    })
+}
+
  verCargas()
 $(function ()
 {
@@ -262,19 +305,17 @@ function editar(id)
           })
       .done(function(data) {
       //console.log(data)
-    $("#modal_id").val(data.id_estudiante);
+    $("#modal_id").val(data.id_trabajador);
     $("#modal_codigo").val(data.codigo);
-    $("#modal_identificacion").val(data.identificacion);
+    $("#modal_documento").val(data.documento);
     $("#modal_primer_apellido").val(data.primer_apellido);
     $("#modal_segundo_apellido").val(data.segundo_apellido);
     $("#modal_primer_nombre").val(data.primer_nombre);
     $("#modal_segundo_nombre").val(data.segundo_nombre);
     $("#modal_direccion").val(data.direccion);
-    $("#modal_telefono").val(data.telefono);
+    $("#modal_telefonofijo").val(data.telefono_fijo);
     $("#modal_email").val(data.email);
-    $("#modal_discapacidad").val(data.discapacidad);
-    $("#modal_fecha_nacimiento").val(data.fecha_nacimiento);
-    $("#modal_usuario").val(data.usuario);
+    $("#modal_barrio").val(data.barrio);
 
     });
 

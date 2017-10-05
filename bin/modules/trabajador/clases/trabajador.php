@@ -67,13 +67,13 @@ public function listTrabajador()
                as editar,
                \"
               <button type=\'button\' class=\'btn btn-warning btn-sm btn_delete\' data-title=\'Edit\'>
-               <span class=\'glyphicon glyphicon-trash\'></span></button>
+               <span class=\'glyphicon glyphicon-minus\'></span></button>
                </div>
                 \"
                  as inactivar,
                  \"
                  <button type=\'button\' class=\'btn btn-success btn-sm btn_delete\' data-title=\'Edit\'>
-                  <span class=\'glyphicon glyphicon-trash\'></span></button>
+                  <span class=\'glyphicon glyphicon-plus\'></span></button>
                   </div>
                    \"
                     as activar,
@@ -173,13 +173,11 @@ public function eliminar($id)
     $reg->Delete();
 }
 
-public function editar($id,$codigo,$id_tipodocumento,$documento,$primer_nombre,$segundo_nombre,$primer_apellido,
-                                $segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email)
+public function editar($id,$codigo,$documento,$primer_nombre,$segundo_nombre,$primer_apellido,$segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email)
     {
         $reg              = new Trabajador('trabajador');
         $reg->load("id_trabajador = {$id}");
         $reg->codigo              =$codigo;
-        $reg->id_tipodocumento    = $id_tipodocumento;
         $reg->documento      = $documento;
         $reg->primer_nombre = $primer_nombre;
         $reg->segundo_nombre = $segundo_nombre;
@@ -194,11 +192,11 @@ public function editar($id,$codigo,$id_tipodocumento,$documento,$primer_nombre,$
         //return $reg->id_estudiante;
     }
 
-public function editarEstadoPago($id, $estado)
+public function editarEstado($id, $estado)
 {
-        $reg              = new Estudiante('estudiante');
-        $reg->load("id_estudiante = {$id}");
-        $reg->idestado_pago = $estado;
+        $reg              = new Trabajador('trabajador');
+        $reg->load("id_trabajador = {$id}");
+        $reg->id_estado = $estado;
         $reg->Save();
 
 }
@@ -207,46 +205,44 @@ public function editarEstadoPago($id, $estado)
   {
     $db = App::$base;
         $sql = "SELECT
-                id_estudiante,
-                codigo,
-                identificacion,
-                primer_apellido,
-                segundo_apellido,
-                primer_nombre,
-                segundo_nombre,
-                concat(identificacion,' ',
-                primer_apellido,' ',
-                segundo_apellido,' ',
-                primer_nombre,' ',
-                segundo_nombre) as nombre_completo,
-                direccion,
-                telefono,
-                email,
-                discapacidad,
-                fecha_nacimiento,
-                usuario
+        id_trabajador,
+        codigo,
+        documento,
+        primer_apellido,
+        segundo_apellido,
+        primer_nombre,
+        segundo_nombre,
+        concat(
+        ifnull(primer_apellido,' '),' ',
+        ifnull(segundo_apellido,' '),' ',
+        ifnull(primer_nombre,' '),' ',
+        ifnull(segundo_nombre,' ')) as nombre_completo,
+        direccion,
+        telefono_fijo,
+        email,
+        celular,
+        barrio
               FROM
-                estudiante
-               WHERE `id_estudiante`= ?";
+                trabajador
+               WHERE `id_trabajador`= ?";
     $rs = $db->dosql($sql, array($id));
 
     while (!$rs->EOF)
                    {
 
                     $res = array(
-                      "id_estudiante"  => $id,//$rs->fields['id_estudiante'],
+                      "id_trabajador"  => $id,//$rs->fields['id_estudiante'],
                       "codigo"  => $rs->fields['codigo'],
-                      "identificacion"      => $rs->fields['identificacion'],
+                      "documento"      => $rs->fields['documento'],
                       "primer_apellido" => $rs->fields['primer_apellido'],
                       "segundo_apellido" => $rs->fields['segundo_apellido'],
                       "primer_nombre" => $rs->fields['primer_nombre'],
                       "segundo_nombre" => $rs->fields['segundo_nombre'],
                       "direccion" => $rs->fields['direccion'],
-                      "telefono" => $rs->fields['telefono'],
+                      "telefono_fijo" => $rs->fields['telefono_fijo'],
+                      "celular" => $rs->fields['celular'],
                       "email" => $rs->fields['email'],
-                      "discapacidad" => $rs->fields['discapacidad'],
-                      "fecha_nacimiento" => $rs->fields['fecha_nacimiento'],
-                      "usuario" => $rs->fields['usuario']
+                      "barrio" => $rs->fields['barrio']
                       );
 
                     $rs->MoveNext();
