@@ -1,10 +1,10 @@
 <?php
 extract($_POST);
-include_once 'materia.php';
-$disc       = new regMateria();	
+include_once 'entidad.php';
+$disc       = new regEntidad();
 try
 {
-	$disc->reg_materia($codigo, $descripcion);
+	$disc->reg_entidad($codigo, $nombre_entidad);
 	echo json_encode(array('guardado' => TRUE));
 }
 catch (Exception $ex)

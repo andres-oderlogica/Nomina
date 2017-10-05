@@ -13,7 +13,7 @@ session_start();
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>B</b>S</span>
+      <span class="logo-mini"><b>J</b>A</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Nomina</b></span>
     </a>
@@ -236,70 +236,21 @@ if($res == 2)
           </ul>
         </li>
          <!-- fin menu trabajador-->
+         <!-- menu entidad-->
          <li class="treeview">
-             <a href="#"><i class="fa fa-dashboard"></i> <span>Usuarios</span>
+             <a href="#"><i class="fa fa-dashboard"></i> <span>Entidad</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../usuarios/usuarios.php"><i class="fa fa-circle-o text-blue"></i>Admin Docentes y/o Usuarios</a></li>
-            <li><a href="../docente/registro_docente.php"><i class="fa fa-circle-o text-blue"></i>Listado Docentes</a></li>
+            <li><a href="../entidad/registro_entidad.php"><i class="fa fa-circle-o text-blue"></i>Registrar Entidades</a></li>
+          <!--  <li><a href="../entidad/listado_entidad.php"><i class="fa fa-circle-o text-blue"></i>Listado Entidades</a></li>-->
           </ul>
         </li>
-        
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-dashboard"></i> <span>Administración</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../estudiante/registro_estudiante.php"><i class="fa fa-circle-o text-red"></i>Estudiantes</a></li>
-
-            <li><a href="../grados/registro_grado.php"><i class="fa fa-circle-o text-red"></i>Grados</a></li>
-            <li><a href="../materia/registro_materia.php"><i class="fa fa-circle-o text-red"></i>Materias</a></li>
-            <li><a href="../gradoxmateria/registro_gradoxmateria.php"><i class="fa fa-circle-o text-red"></i>Materias x Grado</a></li>
-            <li><a href="../docentexgrado/registro_docentexgrado.php"><i class="fa fa-circle-o text-red"></i>Docente x Grado</a></li>
-          </ul>
-        </li>
-
-        <li class="active"><a href="../matricula/registro_matricula.php"><i class="fa fa-edit"></i> <span>Matriculas</span></a></li>
-        <li><a href="../notas/registrar_notas.php"><i class="fa fa-book"></i> <span>Registrar Notas</span></a></li>
-
-        </li>
-
-
-         <li class="treeview">
-            <a href="#"><i class="fa fa-dashboard"></i> <span>Boletines</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../boletines/seleccion_datos.php"><i class="fa fa-circle-o text-red"></i>Generar Boletines General</a></li>
-
-          </ul>
-        </li>
-
-         <li class="treeview">
-            <a href="#"><i class="fa fa-book"></i> <span>Reportes</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../boletines/seleccion_datos_promedio.php"><i class="fa fa-circle-o text-red"></i>Generar Consolidado de Notas</a></li>
-
-          </ul>
-        </li>
-
+        <!-- fin menu entidad-->
       </ul>
-
-   
     </section>
-
   </aside>
 
   <!-- Content Wrapper. Contains page content -->

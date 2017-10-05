@@ -108,7 +108,7 @@ function verCargas()
         success: function (data)
         {
             $('#ver_cargas').html(data);
-           
+
             $('#myTable').DataTable({
                 sPaginationType: "bootstrap",
                 language: {sProcessing: "Procesando...",
@@ -144,7 +144,7 @@ function verCargas()
 
 /*function eliminar(id)
 {
-    bootbox.alert("Desea eliminar el dato?", function(){    
+    bootbox.alert("Desea eliminar el dato?", function(){
     $.ajax({
         url: 'clases/control_crud.php',
         type: "POST",
@@ -158,13 +158,13 @@ function verCargas()
                 }
                 else
                 {
-                    //bootbox.alert("Se elimino con exito");                        
-                                
+                    //bootbox.alert("Se elimino con exito");
+
                 }
 
         },
          complete: function () {
-               verCargas()  
+               verCargas()
             }
         });
 
@@ -200,13 +200,13 @@ bootbox.confirm({
                 }
                 else
                 {
-                    //bootbox.alert("Se elimino con exito");                        
-                                
+                    //bootbox.alert("Se elimino con exito");
+
                 }
 
         },
          complete: function () {
-               verCargas()  
+               verCargas()
             }
         });
 }}
@@ -218,10 +218,10 @@ bootbox.confirm({
 $(function ()
 {
 
-$('#form_materia').submit(function (e)
+$('#form_entidad').submit(function (e)
     {
-        e.preventDefault();        
-        var data = new FormData($("#form_materia")[0]);
+        e.preventDefault();
+        var data = new FormData($("#form_entidad")[0]);
         $.ajax({
             url: $(this).attr('action'),
             type: 'POST',
@@ -233,17 +233,18 @@ $('#form_materia').submit(function (e)
             success: function (data) {
                 if (!data.guardado)
                 {
-                    bootbox.alert('Se presento un error al regisrar el dato');
+                  //  bootbox.alert('Se presento un error al registrar el dato');
+                  $('#alerta_error').show();
                 }
-                    bootbox.alert("Se Guardo con exito", function(){ 
-                                 $('#codigo').val("")                     
-                                 $('#descripcion').val("")
+                  //  bootbox.alert("Se Guardo con exito", function(){
+                  $("#alerta").show()
+                  $("#codigo").val("");
+                  $("#nombre_entidad").val("");
+                                              //    })
 
-                                })
-                
             },
             complete: function () {
-               verCargas()  
+               verCargas()
             }
         });
     });
@@ -251,23 +252,61 @@ $('#form_materia').submit(function (e)
 
 
 function editar(id)
-{	
-	
+{
+
 	$.ajax({    url: "clases/control_crud.php",
               type: "POST",
               dataType: "json",
               data: {opcion:"2",id:id},
           })
       .done(function(data) {
-      //console.log(data) 
-    $("#modal_id").val(data.id_materia);
+      //console.log(data)
+    $("#modal_id").val(data.id_entidad);
     $("#modal_codigo").val(data.codigo);
-    $("#modal_descripcion").val(data.descripcion);
-	        
-    });    
+    $("#modal_nombreEntidad").val(data.nombre_entidad);
 
-     
+    });
+
+
+}
+
+function editar_estado(id, estado)
+{
+bootbox.confirm({
+    message: "Desea realizar esta accion ?",
+    buttons: {
+        confirm: {
+            label: 'Si',
+            className: 'btn-success'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-danger'
+        }
+    },
+    callback: function (result) {
+    if(result){
+    $.ajax({
+        url: 'clases/control_crud.php',
+        type: "POST",
+        dataType:'json',
+        data:{opcion:4, id:id, estado:estado},
+        success: function (data)
+        {
+
+        },
+         complete: function () {
+               verCargas()
+            }
+        });
+}}
+
+    })
 }
 
 
 
+$(document).ready(function($){
+$('#alerta').hide();
+$('#alerta_error').hide();
+})

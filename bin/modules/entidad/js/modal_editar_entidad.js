@@ -9,17 +9,17 @@ $("#btn_save").click(function(){
     data: {opcion:"3",
     id:$('#modal_id').val(),
     codigo:$('#modal_codigo').val(),
-    desc:$('#modal_descripcion').val() 
+    desc:$('#modal_nombreEntidad').val()
     },
           })
-      .done(function() {               
+      .done(function() {
              })
       .always(function(){
         $('#myModal').modal('toggle');
-      parent.verCargas(); 
+      parent.verCargas();
 
       })
-      
+
     });
 
 

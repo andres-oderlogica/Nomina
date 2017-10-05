@@ -1,5 +1,5 @@
 <?php
-include_once 'materia.php';
-$disc       = new regMateria();
-echo $disc->listMateria();
+include_once 'entidad.php';
+$disc       = new regEntidad();
+echo $disc->listEntidad();
 ?>

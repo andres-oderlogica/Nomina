@@ -1,0 +1,2 @@
+select period_diff(date_format(fecha_fin,'%Y%m'),date_format(fecha_inicio,'%Y%m')) as meses
+from contrato;
