@@ -249,6 +249,19 @@ if($res == 2)
           </ul>
         </li>
         <!-- fin menu entidad-->
+        <!-- inicio menu salario-->
+        <li class="treeview">
+            <a href="#"><i class="fa fa-dashboard"></i> <span>Salario</span>
+           <span class="pull-right-container">
+             <i class="fa fa-angle-left pull-right"></i>
+           </span>
+         </a>
+         <ul class="treeview-menu">
+           <li><a href="../salario/registro_salario.php"><i class="fa fa-circle-o text-blue"></i>Registrar Salarios</a></li>
+           <li><a href="../salario/listado_salario.php"><i class="fa fa-circle-o text-blue"></i>Listado Salarios</a></li>
+         </ul>
+       </li>
+       <!-- fin menu salario-->
       </ul>
     </section>
   </aside>
