@@ -117,7 +117,7 @@ session_start();
                     <label class="control-label " for="aux_transporte">
                       Auxilio de Transporte
                     </label>
-                    <input class="form-control" id="aux_transporte" name="aux_tranporte" value="0" type="number" step="any" ><br>
+                    <input class="form-control" id="aux_transporte" name="aux_transporte" value="0" type="number" step="any" ><br>
                   </div>
                   <div class="col-md-6">
                     <label class="control-label " for="arl">
@@ -164,7 +164,7 @@ session_start();
                       <label class="control-label " for="ahorro">
                         Ahorro
                       </label>
-                      <input class="form-control" id="ahorro" name="ahorro" value="0" type="number" step="any" ><br>
+                      <input class="form-control" id="ahorros" name="ahorros" value="0" type="number" step="any" ><br>
                     </div>
                     <div class="col-md-6">
                       <label class="control-label " for="otros">

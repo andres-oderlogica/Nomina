@@ -235,13 +235,13 @@ bootbox.confirm({
                 }
                 else
                 {
-                    //bootbox.alert("Se elimino con exito");                        
-                                
+                    //bootbox.alert("Se elimino con exito");
+
                 }
 
         },
          complete: function () {
-               verCargas()  
+               verCargas()
             }
         });
       }}
@@ -253,10 +253,10 @@ bootbox.confirm({
 $(function ()
 {
 
-$('#form_trabajador').submit(function (e)
+$('#form_salario').submit(function (e)
     {
         e.preventDefault();
-        var data = new FormData($("#form_trabajador")[0]);
+        var data = new FormData($("#form_salario")[0]);
         $.ajax({
             url: $(this).attr('action'),
             type: 'POST',
@@ -279,16 +279,20 @@ $('#form_trabajador').submit(function (e)
             },
             complete: function () {
                verCargas()
-              /*  $('#codigo').val("")
-                $('#identificacion').val("")
-                $('#primer_nombre').val("")
-                $('#primer_apellido').val("")
-                $('#segundo_nombre').val("")
-                $('#segundo_apellido').val("")
-                $('#direccion').val("")
-                $('#telefono').val("")
-                $('#email').val("")
-                $('#discapacidad').val("")*/
+                $('#descripcion_salario').val("")
+                $('#valor_salario').val("0")
+                $('#aux_transporte').val("0")
+                $('#desc_salud').val("0")
+                $('#desc_pension').val("0")
+                $('#desc_cooperativa').val("0")
+                $('#desc_asociacion').val("0")
+                $('#primas').val("0")
+                $('#cesantias').val("0")
+                $('#caja_compensacion').val("0")
+                $('#otros').val("0")
+                $('#arl').val("0")
+                $('#ahorros').val("0")
+                $('#comisiones').val("0")
             }
         });
     });
@@ -304,18 +308,21 @@ function editar(id)
               data: {opcion:"2",id:id},
           })
       .done(function(data) {
-      //console.log(data)
-    $("#modal_id").val(data.id_trabajador);
-    $("#modal_codigo").val(data.codigo);
-    $("#modal_documento").val(data.documento);
-    $("#modal_primer_apellido").val(data.primer_apellido);
-    $("#modal_segundo_apellido").val(data.segundo_apellido);
-    $("#modal_primer_nombre").val(data.primer_nombre);
-    $("#modal_segundo_nombre").val(data.segundo_nombre);
-    $("#modal_direccion").val(data.direccion);
-    $("#modal_telefonofijo").val(data.telefono_fijo);
-    $("#modal_email").val(data.email);
-    $("#modal_barrio").val(data.barrio);
+        $('#modal_id').val(data.id_salario)
+        $('#descripcion_salario').val(data.descripcion_salario)
+        $('#valor_salario').val(data.valor_salario)
+        $('#aux_transporte').val(data.aux_transporte)
+        $('#desc_salud').val(data.desc_salud)
+        $('#desc_pension').val(data.desc_pension)
+        $('#desc_cooperativa').val(data.desc_cooperativa)
+        $('#desc_asociacion').val(data.desc_asociacion)
+        $('#primas').val(data.primas)
+        $('#cesantias').val(data.cesantias)
+        $('#caja_compensacion').val(data.caja_compensacion)
+        $('#otros').val(data.otros)
+        $('#arl').val(data.arl)
+        $('#ahorros').val(data.ahorros)
+        $('#comisiones').val(data.comisiones)
 
     });
 

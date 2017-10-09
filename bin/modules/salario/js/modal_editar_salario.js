@@ -7,28 +7,31 @@ $("#btn_save").click(function(){
     type: "POST",
     dataType: "json",
     data: {opcion:"3",
-    id:$('#modal_id').val(),
-    codigo:$('#modal_codigo').val(),
-    documento:$('#modal_documento').val(),
-    primer_apellido:$('#modal_primer_apellido').val(),
-    segundo_apellido:$('#modal_segundo_apellido').val(),
-    primer_nombre:$('#modal_primer_nombre').val(),
-    segundo_nombre:$('#modal_segundo_nombre').val(),
-    direccion:$('#modal_direccion').val(),
-    telefono_fijo:$('#modal_telefonofijo').val(),
-    email:$('#modal_email').val(),
-    celular:$('#modal_celular').val(),
-    barrio:$('#modal_barrio').val(),
+		id:$('#modal_id').val(),
+		descripcion:$('#descripcion_salario').val(),
+		valor:$('#valor_salario').val(),
+		transporte:$('#aux_transporte').val(),
+		salud:$('#desc_salud').val(),
+		pension:$('#desc_pension').val(),
+		cooperativa:$('#desc_cooperativa').val(),
+		asociacion:$('#desc_asociacion').val(),
+		primas:$('#primas').val(),
+		cesantias:$('#cesantias').val(),
+		caja:$('#caja_compensacion').val(),
+		otros:$('#otros').val(),
+		arl:$('#arl').val(),
+		ahorro:$('#ahorros').val(),
+		comisiones:$('#comisiones').val(),
     },
           })
-      .done(function() {               
+      .done(function() {
              })
       .always(function(){
         $('#myModal').modal('toggle');
-      parent.verCargas(); 
+      parent.verCargas();
 
       })
-      
+
     });
 
 

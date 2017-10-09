@@ -1,5 +1,5 @@
 <?php
-include_once 'trabajador.php';
-$disc       = new regTrabajador();
-echo $disc->listTrabajador();
+include_once 'Salario.php';
+$disc       = new regSalario();
+echo $disc->listSalario();
 ?>

@@ -20,8 +20,8 @@ session_start();
    <!--<script src="../../../lib/bootstrap-3.3.2/js/bootstrap.min.js"></script>-->
    <script src="../../../lib/bootbox.min.js"></script>
    <script src="../../../lib/bootstrap.min.js" data-semver="3.1.1" data-require="bootstrap"></script>
-  <script src='js/trabajador.js?v=<?php echo str_replace('.', '', microtime(true)); ?>'></script>
-  <script src='js/modal_editar_trabajador.js?v=<?php echo str_replace('.', '', microtime(true)); ?>'></script>
+  <script src='js/salario.js?v=<?php echo str_replace('.', '', microtime(true)); ?>'></script>
+  <script src='js/modal_editar_salario.js?v=<?php echo str_replace('.', '', microtime(true)); ?>'></script>
   <link href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 
   <link rel="stylesheet" href="../plantilla2/bootstrap/css/bootstrap.min.css">
@@ -59,7 +59,7 @@ session_start();
 
                <div class="col-md-12">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Listado Trabajadores</div>
+                    <div class="panel-heading">Listado Salarios</div>
                     <div class="panel-body">
 
                               <span id="loader"></span>
@@ -72,7 +72,7 @@ session_start();
 
 </div>
 <?php
-  include 'modal_editar_trabajador.php';
+  include 'modal_editar_salario.php';
 ?>
  <?php
 

@@ -1,82 +1,62 @@
 <?php
 include '../../../../core.php';
 include_once Config::$home_bin.Config::$ds.'db'.Config::$ds.'active_table.php';
- class Trabajador extends ADOdb_Active_Record{}
-class regTrabajador
+ class Salario extends ADOdb_Active_Record{}
+class regSalario
 {
 
-public function reg_estudiante($codigo,$id_tipodocumento,$documento,$primer_nombre,$segundo_nombre,$primer_apellido,
-                                $segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email, $estado)
+public function reg_salario($descripcion,$valor,$transporte,$salud,$pension,$asociacion,
+                                $cooperativa,$cesantias,$primas,$ahorro,$comisiones,$otros,$caja, $arl)
 
     {
       //var_dump($codigo,$identificacion,$primer_apellido,$segundo_apellido,$primer_nombre,$segundo_nombre,$direccion,$telefono,$email,$discapacidad,$fecha_nacimiento);
 
-        $reg              = new Trabajador('trabajador');
-        $reg->codigo              =$codigo;
-        $reg->id_tipodocumento   =$id_tipodocumento;
-        $reg->documento    = $documento;
-        $reg->primer_nombre = $primer_nombre;
-        $reg->segundo_nombre = $segundo_nombre;
-        $reg->primer_apellido = $primer_apellido;
-        $reg->segundo_apellido = $segundo_apellido;
-        $reg->direccion = $direccion;
-        $reg->barrio = $barrio;
-        $reg->telefono_fijo = $telefono_fijo;
-        $reg->celular    =$celular;
-        $reg->email = $email;
-        $reg->id_estado = 1;
+        $reg              = new Salario('salario');
+        $reg->descripcion_salario              =$descripcion;
+        $reg->valor_salario   =$valor;
+        $reg->aux_transporte    = $transporte;
+        $reg->desc_salud = $salud;
+        $reg->desc_pension = $pension;
+        $reg->desc_asociacion = $asociacion;
+        $reg->desc_cooperativa = $cooperativa;
+        $reg->cesantias = $cesantias;
+        $reg->primas = $primas;
+        $reg->ahorros = $ahorro;
+        $reg->comisiones    =$comisiones;
+        $reg->otros = $otros;
+        $reg->caja_compensacion = $caja;
+        $reg->arl = $arl;
         $reg->Save();
          //var_dump($reg);
         //return $reg->id_estudiante;
     }
 
 
-public function listTrabajador()
+public function listSalario()
 {
 	$con = App::$base;
     $sql = "SELECT
-			  id_trabajador,
-        codigo,
-        documento,
-        primer_apellido,
-        segundo_apellido,
-        primer_nombre,
-        segundo_nombre,
-        concat(
-        ifnull(primer_apellido,' '),' ',
-        ifnull(segundo_apellido,' '),' ',
-        ifnull(primer_nombre,' '),' ',
-        ifnull(segundo_nombre,' ')) as nombre_completo,
-			  direccion,
-        telefono_fijo,
-        email,
-        celular,
-        id_estado,
-        case id_estado when '1' then 'ACTIVO' when '2' then 'INACTIVO' END AS estado,
-      \"
-              <button type=\'button\' class=\'btn btn-primary btn-sm btn_edit\' data-title=\'Edit\' data-toggle=\'modal\' data-target=\'#myModal\' >
-               <span class=\'glyphicon glyphicon-pencil\'></span></button>
-               </div>
-                \"
-        barrio,
-               \"
+			  id_salario,
+        descripcion_salario,
+        CONCAT('$ ',FORMAT(valor_salario,0))AS valor_salario,
+        CONCAT('$ ',FORMAT(aux_transporte,0)) as aux_transporte,
+        CONCAT('$ ',FORMAT(desc_salud,0))as desc_salud,
+        CONCAT('$ ',FORMAT(desc_pension,0)) as desc_pension,
+        CONCAT('$ ',FORMAT(desc_asociacion,0)) as desc_asociacion,
+        CONCAT('$ ',FORMAT(desc_cooperativa,0)) as desc_cooperativa,
+        CONCAT('$ ',FORMAT(cesantias,0)) as cesantias,
+        CONCAT('$ ',FORMAT(primas,0)) as primas,
+        CONCAT('$ ',FORMAT(ahorros,0)) as ahorros,
+        CONCAT('$ ',FORMAT(comisiones,0)) as comisiones,
+        CONCAT('$ ',FORMAT(otros,0)) as otros,
+        CONCAT('$ ',FORMAT(caja_compensacion,0)) as caja_compensacion,
+        CONCAT('$ ',FORMAT(arl,0)) as arl,
+         \"
               <button type=\'button\' class=\'btn btn-primary btn-sm btn_edit\' data-title=\'Edit\' data-toggle=\'modal\' data-target=\'#myModal\' >
                <span class=\'glyphicon glyphicon-pencil\'></span></button>
                </div>
                 \"
                as editar,
-               \"
-              <button type=\'button\' class=\'btn btn-warning btn-sm btn_delete\' data-title=\'Edit\'>
-               <span class=\'glyphicon glyphicon-minus\'></span></button>
-               </div>
-                \"
-                 as inactivar,
-                 \"
-                 <button type=\'button\' class=\'btn btn-success btn-sm btn_delete\' data-title=\'Edit\'>
-                  <span class=\'glyphicon glyphicon-plus\'></span></button>
-                  </div>
-                   \"
-                    as activar,
 
                  \"
                 <button type=\'button\' class=\'btn btn-danger btn-sm btn_delete\' data-title=\'Edit\'>
@@ -85,69 +65,53 @@ public function listTrabajador()
                   \"
                    as borrar
             FROM
-            `trabajador`
+            `salario`
             order by
-            primer_apellido ASC
+            id_salario ASC
             ";
 
 		$rs = $con->dosql($sql, array());
-
         $tabla = '<table id="myTable" class="table table-hover table-striped table-bordered table-condensed" cellpadding="0" cellspacing="0" border="1" class="display" >
                         <thead>
                         <tr>
                         <th id="yw9_c0">#</th>
-                        <th id="yw9_c3">Identificacion</th>
-                        <th id="yw9_c4">Nombres y Apellidos</th>
-                        <th id="yw9_c3">Dirección</th>
-                        <th id="yw9_c6">Celular</th>
-                        <th id="yw9_c6">Estado</th>
+                        <th id="yw9_c3">Descripcion</th>
+                        <th id="yw9_c4">Valor Salario</th>
+                        <th id="yw9_c3">Pago Salud</th>
+                        <th id="yw9_c6">Pago Pension</th>
+                        <th id="yw9_c6">Cuota Asociacion</th>
                         <th id="yw9_c7">Editar</th>
-                        <th id="yw9_c7">Inac/Act</th>
                         <th id="yw9_c7">Eliminar</th>
-
                         </tr>
                         </thead>
                         <tbody>';
 		          while (!$rs->EOF)
                    {
 
-                     if($rs->fields['id_estado'] == 1)
-                     {
-                       $est = $rs->fields['inactivar'];
-                     }
-                     else{
-                       $est = $rs->fields['activar'];
-                     }
                    	$tabla.='<tr >
                             <td>
-                                '.utf8_encode($rs->fields['id_trabajador']).'
+                                '.utf8_encode($rs->fields['id_salario']).'
                             </td>
 
                             <td>
-                                '.utf8_encode($rs->fields['documento']).'
+                                '.utf8_encode($rs->fields['descripcion_salario']).'
                             </td>
                             <td>
-                                '.$rs->fields['nombre_completo'].'
+                                '.$rs->fields['valor_salario'].'
                             </td>
                              <td>
-                                '.utf8_encode($rs->fields['direccion']).'
+                                '.utf8_encode($rs->fields['desc_salud']).'
                             </td>
                             <td>
-                                '.utf8_encode($rs->fields['celular']).'
+                                '.utf8_encode($rs->fields['desc_pension']).'
                             </td>
                             <td>
-                                '.utf8_encode($rs->fields['estado']).'
+                                '.utf8_encode($rs->fields['desc_asociacion']).'
                             </td>
-
-                            <td align="center" width= "30" onclick="editar('.$rs->fields['id_trabajador'].')">
+                            <td align="center" width= "30" onclick="editar('.$rs->fields['id_salario'].')">
                                 '.utf8_encode($rs->fields['editar']).'
                             </td>
-
-                            <td align="center" width= "30" onclick="editar_estado('.$rs->fields['id_trabajador'].','.$rs->fields['id_estado'].')">
-                                '.$est.'
-                            </td>
-
-                            <td align="center" width= "30" onclick="eliminar('.$rs->fields['id_trabajador'].')">
+                            <td align="center" width= "30" onclick="eliminar('.$rs->fields['id_salario'].')">
                                 '.utf8_encode($rs->fields['borrar']).'
                             </td>
 
@@ -168,81 +132,79 @@ public function listTrabajador()
 
 public function eliminar($id)
 {
-    $reg              = new Trabajador('trabajador');
-    $reg->load("id_trabajador = {$id}");
+    $reg              = new Salario('salario');
+    $reg->load("id_salario = {$id}");
     $reg->Delete();
 }
 
-public function editar($id,$codigo,$documento,$primer_nombre,$segundo_nombre,$primer_apellido,$segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email)
+public function editar($id,$descripcion,$valor,$transporte,$salud,$pension,$asociacion,
+                       $cooperativa,$cesantias,$primas,$ahorro,$comisiones,$otros,$caja, $arl)
     {
-        $reg              = new Trabajador('trabajador');
-        $reg->load("id_trabajador = {$id}");
-        $reg->codigo              =$codigo;
-        $reg->documento      = $documento;
-        $reg->primer_nombre = $primer_nombre;
-        $reg->segundo_nombre = $segundo_nombre;
-        $reg->primer_apellido = $primer_apellido;
-        $reg->segundo_apellido = $segundo_apellido;
-        $reg->direccion = $direccion;
-        $reg->barrio = $barrio;
-        $reg->telefono_fijo = $telefono_fijo;
-        $reg->celular      =$celular;
-        $reg->email = $email;
+        $reg              = new Salario('salario');
+        $reg->load("id_salario = {$id}");
+        $reg->descripcion_salario              =$descripcion;
+        $reg->valor_salario   =$valor;
+        $reg->aux_transporte    = $transporte;
+        $reg->desc_salud = $salud;
+        $reg->desc_pension = $pension;
+        $reg->desc_asociacion = $asociacion;
+        $reg->desc_cooperativa = $cooperativa;
+        $reg->cesantias = $cesantias;
+        $reg->primas = $primas;
+        $reg->ahorros = $ahorro;
+        $reg->comisiones    =$comisiones;
+        $reg->otros = $otros;
+        $reg->caja_compensacion = $caja;
+        $reg->arl = $arl;
         $reg->Save();
         //return $reg->id_estudiante;
     }
-
-public function editarEstado($id, $estado)
-{
-        $reg              = new Trabajador('trabajador');
-        $reg->load("id_trabajador = {$id}");
-        $reg->id_estado = $estado;
-        $reg->Save();
-
-}
 
   public function buscar($id)
   {
     $db = App::$base;
         $sql = "SELECT
-        id_trabajador,
-        codigo,
-        documento,
-        primer_apellido,
-        segundo_apellido,
-        primer_nombre,
-        segundo_nombre,
-        concat(
-        ifnull(primer_apellido,' '),' ',
-        ifnull(segundo_apellido,' '),' ',
-        ifnull(primer_nombre,' '),' ',
-        ifnull(segundo_nombre,' ')) as nombre_completo,
-        direccion,
-        telefono_fijo,
-        email,
-        celular,
-        barrio
+        id_salario,
+        descripcion_salario,
+        valor_salario,
+        aux_transporte,
+        desc_salud,
+        desc_pension,
+        desc_asociacion,
+        desc_cooperativa,
+        cesantias,
+        primas,
+        ahorros,
+        comisiones,
+        otros,
+        caja_compensacion,
+        arl
               FROM
-                trabajador
-               WHERE `id_trabajador`= ?";
+                salario
+               WHERE `id_salario`= ?";
     $rs = $db->dosql($sql, array($id));
 
     while (!$rs->EOF)
                    {
 
                     $res = array(
-                      "id_trabajador"  => $id,//$rs->fields['id_estudiante'],
-                      "codigo"  => $rs->fields['codigo'],
-                      "documento"      => $rs->fields['documento'],
-                      "primer_apellido" => $rs->fields['primer_apellido'],
-                      "segundo_apellido" => $rs->fields['segundo_apellido'],
-                      "primer_nombre" => $rs->fields['primer_nombre'],
-                      "segundo_nombre" => $rs->fields['segundo_nombre'],
-                      "direccion" => $rs->fields['direccion'],
-                      "telefono_fijo" => $rs->fields['telefono_fijo'],
-                      "celular" => $rs->fields['celular'],
-                      "email" => $rs->fields['email'],
-                      "barrio" => $rs->fields['barrio']
+                      "id_salario"  => $id,//$rs->fields['id_estudiante'],
+                      "descripcion_salario"  => $rs->fields['descripcion_salario'],
+                      "valor_salario"      => $rs->fields['valor_salario'],
+                      "aux_transporte" => $rs->fields['aux_transporte'],
+                      "desc_salud" => $rs->fields['desc_salud'],
+                      "desc_pension" => $rs->fields['desc_pension'],
+                      "desc_asociacion" => $rs->fields['desc_asociacion'],
+                      "desc_cooperativa" => $rs->fields['desc_cooperativa'],
+                      "cesantias" => $rs->fields['cesantias'],
+                      "primas" => $rs->fields['primas'],
+                      "ahorros" => $rs->fields['ahorros'],
+                      "comisiones" => $rs->fields['comisiones'],
+                      "ahorros" => $rs->fields['ahorros'],
+                      "comisiones" => $rs->fields['comisiones'],
+                      "otros" => $rs->fields['otros'],
+                      "caja_compensacion" => $rs->fields['caja_compensacion'],
+                      "arl" => $rs->fields['arl']
                       );
 
                     $rs->MoveNext();

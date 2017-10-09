@@ -1,11 +1,13 @@
 <?php
 extract($_POST);
-include_once 'trabajador.php';
-$disc       = new regTrabajador();
+include_once 'Salario.php';
+$disc       = new regSalario();
 
 try
 {
-	$disc->reg_estudiante($codigo,$id_tipodocumento,$documento,$primer_nombre,$segundo_nombre,$primer_apellido,$segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email, $estado);
+	$disc->reg_salario($descripcion_salario,$valor_salario,$aux_transporte,$desc_salud,
+										$desc_pension,$desc_asociacion,$desc_cooperativa,$cesantias,$primas,
+										$ahorros,$comisiones,$caja_compensacion, $otros, $arl);
 	//var_dump($codigo);
       echo json_encode(array('guardado' => TRUE));
 }

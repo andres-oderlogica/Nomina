@@ -1,22 +1,23 @@
 <?php
-include_once 'trabajador.php';
+include_once 'salario.php';
 $opcion = $_POST['opcion'];
 $id     = $_POST['id'];
-$codigo =$_POST['codigo'];
-$idtipo = $_POST['id_tipodocumento'];
-$documento    = $_POST['documento'];
-$primer_apellido   = $_POST['primer_apellido'];
-$segundo_apellido  = $_POST['segundo_apellido'];
-$primer_nombre = $_POST['primer_nombre'];
-$segundo_nombre = $_POST['segundo_nombre'];
-$barrio =$_POST['barrio'];
-$direccion    = $_POST['direccion'];
-$telefono_fijo    = $_POST['telefono_fijo'];
-$celular = $_POST['celular'];
-$email   = $_POST['email'];
-$estado = $_POST['estado'];
+$descripcion =$_POST['descripcion'];
+$valor = $_POST['valor'];
+$salud    = $_POST['salud'];
+$pension   = $_POST['pension'];
+$primas  = $_POST['primas'];
+$cesantias = $_POST['cesantias'];
+$transporte = $_POST['transporte'];
+$ahorro =$_POST['ahorro'];
+$asociacion    = $_POST['asociacion'];
+$cooperativa    = $_POST['cooperativa'];
+$caja = $_POST['caja'];
+$arl   = $_POST['arl'];
+$comisiones = $_POST['comisiones'];
+$otros = $_POST['otros'];
 //extract($_POST);
-$disc   = new regTrabajador();
+$disc   = new regSalario();
 //var_dump($id);
 switch ($opcion) {
 	case '1':
@@ -34,7 +35,8 @@ switch ($opcion) {
 		echo json_encode($res);
 		break;
 		case '3':
-			$disc->editar($id,$codigo,$documento,$primer_nombre,$segundo_nombre,$primer_apellido,$segundo_apellido,$direccion,$barrio,$telefono_fijo,$celular,$email);
+			$disc->editar($id,$descripcion,$valor,$transporte,$salud,$pension,$asociacion,
+			                       $cooperativa,$cesantias,$primas,$ahorro,$comisiones,$otros,$caja, $arl);
 			break;
 
 		case '4':
@@ -46,7 +48,7 @@ switch ($opcion) {
 						$disc->editarEstado($id, 1);
 					}
 
-					
+
 					echo json_encode(array('editado' => TRUE));
 
 				} catch (Exception $ex) {
