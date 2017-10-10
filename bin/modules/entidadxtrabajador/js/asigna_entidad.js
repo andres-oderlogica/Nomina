@@ -115,8 +115,8 @@ function verCargas(id)
         {
             $('#ver_cargas').html(data);
 
-           $('#myTable').DataTable({    
-             sPaginationType: "bootstrap", 
+           $('#myTable').DataTable({
+             sPaginationType: "bootstrap",
                 language: {sProcessing: "Procesando...",
                     sLengthMenu: "Mostrar _MENU_ registros",
                     sZeroRecords: "No se encontraron resultados",
@@ -177,14 +177,14 @@ bootbox.confirm({
                 }
                 else
                 {
-                    //bootbox.alert("Se elimino con exito");                        
-                                
+                    //bootbox.alert("Se elimino con exito");
+
                 }
 
         },
          complete: function () {
-               verCargas($("#grado").val()) 
-              // verCargas2($("#grado").val())  
+               verCargas($("#grado").val())
+              // verCargas2($("#grado").val())
             }
         });
 }}
@@ -192,13 +192,13 @@ bootbox.confirm({
     })
 }
 
- //verCargas() 
+ //verCargas()
 $(function ()
 {
 
 $('#form_materiaxgrado').submit(function (e)
     {
-        e.preventDefault();        
+        e.preventDefault();
         var data = new FormData($("#form_materiaxgrado")[0]);
         $.ajax({
             url: $(this).attr('action'),
@@ -213,14 +213,14 @@ $('#form_materiaxgrado').submit(function (e)
                 {
                     bootbox.alert('Se presento un error al regisrar el dato');
                 }
-                    bootbox.alert("Se Guardo con exito", function(){ 
+                    bootbox.alert("Se Guardo con exito", function(){
                              //location.reload();
                                 })
-                
+
             },
             complete: function () {
               $('#btn_saveg').attr("disabled", true);
-               verCargas($("#grado").val())  
+               verCargas($("#grado").val())
             }
         });
     });
@@ -230,11 +230,11 @@ $('#form_materiaxgrado').submit(function (e)
 
 
 function editar(id)
-{	
+{
 if($("#grado").val() != "" && $("#jornada").val() != "" && $("#docente").val() != "")
 {
-bootbox.confirm({                    
-                     
+bootbox.confirm({
+
     message: "Desea matricular el alumno en el grado ?",
     buttons: {
         confirm: {
@@ -248,7 +248,7 @@ bootbox.confirm({
     },
     callback: function (result) {
     if(result){
-	
+
 	$.ajax({  url: "clases/control_crud.php",
               type: "POST",
               dataType: "json",
@@ -263,12 +263,12 @@ bootbox.confirm({
           })
       .done(function(data){
          })
-          .fail(function(){             
+          .fail(function(){
             })
              .always(function(){
-             verCargas() 
-                         
-              }); 
+             verCargas()
+
+              });
 
  }}
 
@@ -278,8 +278,34 @@ else
 {
     bootbox.alert('Debe digitar datos del grado a matricular');
 }
-     
+
 }
+
+$('#search').typeahead({
+    source: function (query) {
+        var self = this;
+        self.map = {};
+        var items = [];
+
+        var data = [
+            {"id": 1, "label": "machin"},
+            {"id": 2, "label": "truc"}
+        ];
+
+        $.each(data, function (i, item) {
+            self.map[item.label] = item;
+            items.push(item.label)
+        });
+
+        return items;
+    },
+
+    updater: function (item) {
+        var selectedItem = this.map[item];
+        this.$element.data('selected', selectedItem);
+        return item;
+    }
+});
 
 $(document).ready(function($){
 $('#btn_saveg').attr("disabled", true);
@@ -292,11 +318,49 @@ $.ajax({  url: "combo/control_combox.php",
       .done(function(data) {
         for (var i = 0; i < data.length; i++)
         {
-            $("#comboGrado").append('<option value = "'+data[i].id_grado+'">'+data[i].curso+'</option>');
-         
-        }   
-            
+            $("#comboGrado").append('<option value = "'+data[i].id_trabajador+'">'+data[i].nombres+'</option>');
+
+        }
+
     });
+
+  /*  $('#search').typeahead({
+      source: function (query, process) {
+      states = [];
+      map = {};
+
+      var data = [
+          {"stateCode": "CA", "stateName": "California"},
+          {"stateCode": "AZ", "stateName": "Arizona"},
+          {"stateCode": "NY", "stateName": "New York"},
+          {"stateCode": "NV", "stateName": "Nevada"},
+          {"stateCode": "OH", "stateName": "Ohio"}
+      ];
+
+      $.each(data, function (i, state) {
+          map[state.stateName] = state;
+          states.push(state.stateName);
+      });
+
+      process(states);
+  },
+    updater: function (item) {
+      selectedState = map[item].stateCode;
+ return item;
+    },
+    matcher: function (item) {
+      if (item.toLowerCase().indexOf(this.query.trim().toLowerCase()) != -1) {
+        return true;
+    }
+    },
+    sorter: function (items) {
+        return items.sort();
+    },
+    highlighter: function (item) {
+      var regex = new RegExp( '(' + this.query + ')', 'gi' );
+   return item.replace( regex, "<strong>$1</strong>" );
+    },
+});*/
 
 /*$.ajax({  url: "combo/control_combox.php",
               type: "POST",
@@ -307,9 +371,9 @@ $.ajax({  url: "combo/control_combox.php",
         for (var i = 0; i < data.length; i++)
         {
             $("#comboJornada").append('<option value = "'+data[i].id_jornada+'">'+data[i].descripcion+'</option>');
-         
-        }    
-            
+
+        }
+
     });
 
 $.ajax({  url: "combo/control_combox.php",
@@ -321,37 +385,35 @@ $.ajax({  url: "combo/control_combox.php",
         for (var i = 0; i < data.length; i++)
         {
             $("#comboDocente").append('<option value = "'+data[i].id_docente+'">'+data[i].nombre_completo+'</option>');
-         
-        }    
-            
+
+        }
+
     });
 
 
 $('select#comboJornada').on('change click keyup input paste',function(){
-     var id = $(this).val();                      
-                    
-                    $("#jornada").val(id);                   
-                           
+     var id = $(this).val();
+
+                    $("#jornada").val(id);
+
              });*/
 
 $('select#comboGrado').on('change click keyup input paste',function(){
      var idg = $(this).val();
-     $('#btn_saveg').attr("disabled", false);                   
-               $("#grado").val(idg); 
+     $('#btn_saveg').attr("disabled", false);
+               $("#grado").val(idg);
                verCargas(idg)
-              // verCargas()                   
-                           
+              // verCargas()
+
              });
 
 /*$('select#comboDocente').on('change click keyup input paste',function(){
-     var idd = $(this).val();                      
-                    
-                    $("#docente").val(idd);                   
-                           
+     var idd = $(this).val();
+
+                    $("#docente").val(idd);
+
              });*/
 
 
 
 });
-
- 

@@ -4,24 +4,28 @@ session_start();
         header("location: ../../../login.php");
     exit;
         }
- 
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>    
+  <head>
    <?php //include("../plantilla/head.php");?>
   <title>Matriculas</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
  <!--  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"> -->
-   <meta name="viewport" content="width=device-width, initial-scale=1"> 
+   <meta name="viewport" content="width=device-width, initial-scale=1">
    <script src="../../../lib/js/jquery.js?v=<?php echo str_replace('.', '', microtime(true)); ?>"></script>
    <script src="../plantilla2/plugins/jQuery/jquery-2.2.3.min.js"></script>
    <script src="../../../lib/js/jquery.dataTables.min.js?v=<?php echo str_replace('.', '', microtime(true)); ?>"></script>
    <!--<script src="../../../lib/bootstrap-3.3.2/js/bootstrap.min.js"></script>-->
+   <script src="../../../lib/bootstrap3-typeahead.js?v=<?php echo str_replace('.', '', microtime(true)); ?>"></script>
+   <script src="../../../lib/bootstrap3-typeahead.min.js?v=<?php echo str_replace('.', '', microtime(true)); ?>"></script>
+   <script src="../../../lib/typeahead.bundle.js?v=<?php echo str_replace('.', '', microtime(true)); ?>"></script>
    <script src="../../../lib/bootbox.min.js"></script>
    <script src="../../../lib/bootstrap.min.js" data-semver="3.1.1" data-require="bootstrap"></script>
-    <script src='js/gradoxmateria.js?v=<?php echo str_replace('.', '', microtime(true)); ?>'></script>
-    <script src='js/modal_editar_gradoxmateria.js?v=<?php echo str_replace('.', '', microtime(true)); ?>'></script>
+    <script src='js/asigna_entidad.js?v=<?php echo str_replace('.', '', microtime(true)); ?>'></script>
+
+    <script src='js/modal_asignar_entidad.js?v=<?php echo str_replace('.', '', microtime(true)); ?>'></script>
     <link href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 
     <link rel="stylesheet" href="../plantilla2/bootstrap/css/bootstrap.min.css">
@@ -33,8 +37,8 @@ session_start();
     <script src="../plantilla2/dist/js/app.min.js"></script>
 
   <style>
-            
-         
+
+
             .dataTables_filter label{
                 display:block !important;
             }
@@ -55,15 +59,15 @@ session_start();
           /*  .panel-body {
             height: 500px;
             }*/
-   
+
         </style>
    </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <?php
-    
+
    include '../plantilla2/starter.php';
-      
-  ?>  
+
+  ?>
 <div class="container-fluid">
              <div class="col-md-12">
                 <div class="panel panel-primary">
@@ -71,6 +75,7 @@ session_start();
                     <div class="panel-body">
                         <form id="form_materiaxgrado" action="clases/control_gradoxmateria.php">
                             <div class="col-md-12">
+                              <input id="search"/><br>
                               <label>Grado</label>
                               <select id="comboGrado" name="grado" class="form-control">
                                 <option value="0">--Seleccione--</option>
@@ -78,7 +83,7 @@ session_start();
                                 <input  id="grado" name="cod_grado" type="hidden" >
                                 <br>
 
-                   <div class="checkbox">                               
+                   <div class="checkbox">
                     <label class="col-md-3" style="font-size: 1.2em" >
                         <input type="checkbox" id ="copia" value="3" name="servicios[]">
                           <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
@@ -97,9 +102,9 @@ session_start();
                       <label class="col-md-3" style="font-size: 1.2em">
                          <input type="checkbox" value="7" name="servicios[]">
                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                          Biblia                          
+                          Biblia
                       </label></div><br>
-                    <div class="checkbox">   
+                    <div class="checkbox">
                       <label class="col-md-3" style="font-size: 1.2em" >
                         <input type="checkbox" id ="copia" value="8" name="servicios[]">
                           <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
@@ -118,11 +123,11 @@ session_start();
                       <label class="col-md-3" style="font-size: 1.2em">
                          <input type="checkbox" value="11" name="servicios[]">
                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                          ECA                          
+                          ECA
                       </label>
                   </div><br>
 
-                  <div class="checkbox">   
+                  <div class="checkbox">
                       <label class="col-md-3" style="font-size: 1.2em" >
                         <input type="checkbox" id ="copia" value="12" name="servicios[]">
                           <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
@@ -141,11 +146,11 @@ session_start();
                       <label class="col-md-3" style="font-size: 1.2em">
                          <input type="checkbox" value="15" name="servicios[]">
                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                          Geografia                         
+                          Geografia
                       </label>
                   </div><br>
 
-                   <div class="checkbox">   
+                   <div class="checkbox">
                       <label class="col-md-3" style="font-size: 1.2em" >
                         <input type="checkbox" id ="copia" value="17" name="servicios[]">
                           <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
@@ -164,11 +169,11 @@ session_start();
                       <label class="col-md-3" style="font-size: 1.2em">
                          <input type="checkbox" value="20" name="servicios[]">
                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                          Matematicas                          
+                          Matematicas
                       </label>
                   </div><br>
 
-                   <div class="checkbox">   
+                   <div class="checkbox">
                       <label class="col-md-3" style="font-size: 1.2em" >
                         <input type="checkbox" id ="copia" value="21" name="servicios[]">
                           <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
@@ -188,10 +193,10 @@ session_start();
                         <input type="checkbox" id ="copia" value="24" name="servicios[]">
                           <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                          Biologia
-                      </label>                      
+                      </label>
                   </div><br>
 
-                   <div class="checkbox">   
+                   <div class="checkbox">
                       <label class="col-md-3" style="font-size: 1.2em" >
                         <input type="checkbox" id ="copia" value="2" name="servicios[]">
                           <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
@@ -201,34 +206,34 @@ session_start();
                          <input type="checkbox" value="29" name="servicios[]">
                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                           Estudio Sociales
-                          </label> 
+                          </label>
 
                           <label class="col-md-3" style="font-size: 1.2em">
                          <input type="checkbox" value="27" name="servicios[]">
                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                           Filosofia
-                          </label>                 
-                 
+                          </label>
+
 
                    <label class="col-md-3" style="font-size: 1.2em">
                          <input type="checkbox" value="26" name="servicios[]">
                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                           Sociologia
-                          </label>                 
+                          </label>
                   </div><br>
 
-                   <div class="checkbox">   
+                   <div class="checkbox">
                       <label class="col-md-3" style="font-size: 1.2em" >
                         <input type="checkbox" id ="copia" value="38" name="servicios[]">
                           <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                           Conociendo mi Mundo
                       </label>
-                                  
+
                   </div><br>
 
-                   <br>                             
-                                                            
-                         </div>                       
+                   <br>
+
+                         </div>
                             <div class="col-md-12">
                                <center> <button id="btn_saveg" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Guardar</button></center>
                             </div>
@@ -237,7 +242,7 @@ session_start();
                 </div>
             </div>
 
-           
+
 
                <div class="col-md-12">
                 <div class="panel panel-primary">
@@ -247,7 +252,7 @@ session_start();
                     </div>
                 </div>
             </div>
-           
+
 </div>
 
 <?php
@@ -261,5 +266,3 @@ include '../plantilla2/fin.php';
 
 </body>
 </html>
-
-

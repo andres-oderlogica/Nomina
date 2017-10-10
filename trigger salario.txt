@@ -1,2 +1,20 @@
 select period_diff(date_format(fecha_fin,'%Y%m'),date_format(fecha_inicio,'%Y%m')) as meses
 from contrato;
+set @meses = (select period_diff(date_format(new.fecha_fin,'%Y%m'),date_format(new.fecha_inicio,'%Y%m')) as meses
+from contrato);
+set @pago = (select valor_salario from salario where salario.id_salario = new.id_salario);
+set @aux = (select aux_transporte from salario where salario.id_salario = new.id_salario);
+SET @total = (@pago + @aux) * @meses;
+set new.valor_contrato =  @total;
+set @id = (select max(id_contrato) from contrato);
+set @prefijo = 'CONT - ';
+IF (@id>0 || @id = null) THEN
+        SET new.numero_contrato = CONCAT(@prefijo,'',@id+1);
+    ELSE
+        SET new.numero_contrato = CONCAT(@prefijo,'',1);
+    END IF;
+
+https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-typeahead.php
+https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=typeahead-with-local-dataset
+https://stackoverflow.com/questions/12389948/twitter-bootstrap-typeahead-id-label
+http://tatiyants.com/how-to-use-json-objects-with-twitter-bootstrap-typeahead/
